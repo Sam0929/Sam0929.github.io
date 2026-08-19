@@ -9,158 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #080808;
-      --surface: #111111;
-      --surface-2: #171717;
-      --text: #f5f5f5;
-      --muted: #a3a3a3;
-      --line: #292929;
-      --accent: #f5f5f5;
-      --max: 1120px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top right, #171717 0, var(--bg) 32rem), var(--bg);
-      color: var(--text);
-      font-family: Inter, system-ui, sans-serif;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(8, 8, 8, .78);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav-inner {
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -.03em; }
-    .nav-links { display: flex; gap: 24px; color: var(--muted); font-size: .94rem; }
-    .nav-links a:hover { color: var(--text); }
-
-    header { min-height: 78vh; display: grid; place-items: center; }
-    .hero { padding: 100px 0 90px; max-width: 900px; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.025);
-      border-radius: 999px;
-      color: #5eec0c;
-      font-size: .82rem;
-      margin-bottom: 22px;
-    }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #5cda08; }
-    h1 {
-      margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(3rem, 8vw, 6.8rem);
-      line-height: .95;
-      letter-spacing: -.065em;
-      max-width: 900px;
-    }
-    .hero p {
-      max-width: 780px;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      margin: 26px 0 32px;
-    }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 17px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      font-weight: 600;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .btn:hover { transform: translateY(-2px); border-color: #454545; }
-    .btn.primary { background: var(--text); color: #080808; border-color: var(--text); }
-    .btn.primary:hover { background: #ddd; }
-
-    section { padding: 88px 0; border-top: 1px solid var(--line); }
-    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 34px; }
-    .section-kicker { color: #777; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; font-weight: 700; }
-    h2 { margin: 7px 0 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.045em; }
-    .section-head p { max-width: 450px; margin: 0; color: var(--muted); }
-
-    .projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
-    .card {
-      background: linear-gradient(180deg, var(--surface-2), var(--surface));
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px;
-      min-height: 280px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card:hover { border-color: #414141; }
-    .tag { color: #6488d4; font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }
-    .card h3 { margin: 10px 0 10px; font-family: "Space Grotesk", sans-serif; font-size: 1.5rem; letter-spacing: -.025em; }
-    .card p { color: var(--muted); margin: 0; }
-    .tech { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
-    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; color: #c8c8c8; font-size: .75rem; }
-    .card-link { margin-top: 24px; font-weight: 700; }
-
-    .about { display: grid; grid-template-columns: 1.15fr .85fr; gap: 50px; align-items: start; }
-    .about-copy p { color: var(--muted); font-size: 1.04rem; margin: 0 0 16px; }
-    .education { display: grid; gap: 14px; }
-    .info { border-left: 2px solid #363636; padding: 2px 0 2px 17px; }
-    .info strong { display: block; }
-    .info span { color: var(--muted); font-size: .9rem; display: block; }
-
-    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .skill-group { border: 1px solid var(--line); border-radius: 14px; padding: 22px; background: rgba(255,255,255,.015); }
-    .skill-group h3 { margin: 0 0 13px; font-family: "Space Grotesk", sans-serif; }
-    .skill-group p { margin: 0; color: var(--muted); }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: end;
-    }
-    .contact p { color: var(--muted); max-width: 620px; }
-    .links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
-
-    footer { padding: 24px 0 40px; color: #707070; font-size: .85rem; }
-    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
-
-    @media (max-width: 800px) {
-      .nav-links { display: none; }
-      .projects, .about, .skills, .contact { grid-template-columns: 1fr; }
-      .links { justify-content: flex-start; }
-      header { min-height: auto; }
-      .hero { padding-top: 72px; }
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
   <nav>
     <div class="container nav-inner">
       <a class="brand" href="#top">Samuel Vanini</a>
       <div class="nav-links">
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
@@ -178,12 +35,59 @@
           I'm Samuel Vanini, a Computer Engineering student at PUC-Campinas, Brazil. I build software across mobile development, backend systems, computer vision and low-level computing.
         </p>
         <div class="cta-row">
-          <a class="btn primary" href="#projects">View projects</a>
-          <a class="btn" href="https://github.com/Sam0929" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/samuel-vanini-851a4a207/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn primary" href="#projects"><i class="fa-solid fa-folder-open"></i>View projects</a>
+          <a class="btn" href="https://github.com/Sam0929" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i>GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/samuel-vanini-851a4a207/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
         </div>
       </div>
     </header>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Professional experience</div>
+            <h2>Experience</h2>
+          </div>
+        </div>
+
+        <div class="experience">
+          <article class="experience-item">
+            <div class="experience-marker">
+              <span></span>
+            </div>
+
+            <div class="experience-content">
+              <div class="experience-top">
+                <div>
+                  <div class="tag">IT Support · Hardware</div>
+                  <h3>Technical Support & IT Maintenance</h3>
+                  <p class="experience-company">
+                    Self-employed · Pedreira, São Paulo, Brazil
+                  </p>
+                  <p class ="experience-date">Jan 2022 — Jan 2024</p>
+                </div>
+              </div>
+
+              <p class="experience-description">
+                Provided end-to-end technical support for private clients,
+                covering computer assembly, configuration, preventive and
+                corrective maintenance, hardware and software troubleshooting,
+                and upgrade recommendations.
+              </p>
+
+              <div class="tech">
+                <span class="chip">Hardware Troubleshooting</span>
+                <span class="chip">PC Maintenance</span>
+                <span class="chip">Windows</span>
+                <span class="chip">Hardware Upgrades</span>
+                <span class="chip">Customer Support</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section id="projects">
       <div class="container">
@@ -238,12 +142,12 @@
 
           <article class="card">
             <div>
-              <div class="tag">Embedded · Hardware</div>
-              <h3>VHDL MPU</h3>
-              <p>Digital-system project in VHDL implementing a matrix-processing architecture with an FSM and operations such as add, subtract, multiply and MAC.</p>
-              <div class="tech"><span class="chip">VHDL</span><span class="chip">FPGA Concepts</span><span class="chip">FSM</span><span class="chip">Digital Design</span></div>
+                <div class="tag">Backend · Docker · Web</div>
+                <h3>Laravel Web System</h3>
+                <p>Web application developed with Laravel and containerized with Docker Compose, integrating PHP, MySQL, Nginx and phpMyAdmin into a multi-servicedevelopment environment.</p>
+                <div class="tech"><span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">MySQL</span><span class="chip">Nginx</span></div>
             </div>
-            <a class="card-link" href="https://github.com/Sam0929/VHDL" target="_blank" rel="noreferrer">View repository →</a>
+            <a class="card-link" href="https://github.com/Sam0929/PROJETO_V2" target="_blank" rel="noreferrer">View repository →</a>
           </article>
 
           <article class="card">
@@ -296,16 +200,35 @@
         <div class="skills">
           <div class="skill-group">
             <h3>Software</h3>
-            <p>Kotlin, Python, C, Java, SQL, Android, Jetpack Compose, Django, REST APIs, Git and GitHub.</p>
+            <p>
+              C, Python, Django, Kotlin, Android, Jetpack Compose, 
+              SQL, Git and GitHub.
+            </p>
           </div>
+
           <div class="skill-group">
             <h3>Data & AI</h3>
-            <p>Computer vision, PyTorch, YOLO, OpenCV, dataset preparation, model training and graph analysis with NetworkX.</p>
+            <p>
+              Computer vision, PyTorch, YOLO, OpenCV, dataset preparation,
+              model training.
+            </p>
           </div>
+
+          <div class="skill-group">
+            <h3>DevOps & Infrastructure</h3>
+            <p>
+              Docker, Docker Compose, Linux, Nginx and containerization.
+            </p>
+          </div>
+
           <div class="skill-group">
             <h3>Systems & Hardware</h3>
-            <p>Linux, VHDL, embedded systems, digital logic, data structures, compilers, networking and IoT.</p>
+            <p>
+              IoT, embedded systems, digital logic, data structures,
+              compilers, networking and VHDL.
+            </p>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -318,9 +241,9 @@
           <p>For internships, projects or professional opportunities, feel free to reach out through LinkedIn, GitHub or email.</p>
         </div>
         <div class="links">
-          <a class="btn primary" href="mailto:vaninisamuel.w@gmail.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/samuel-vanini-851a4a207/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn" href="https://github.com/Sam0929" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn primary" href="mailto:vaninisamuel.w@gmail.com"><i class="fa-solid fa-envelope"></i>Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/samuel-vanini-851a4a207/" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+          <a class="btn" href="https://github.com/Sam0929" target="_blank" rel="noreferrer"><i class="fa-brands fa-github"></i>GitHub</a>
         </div>
       </div>
     </section>
